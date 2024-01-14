@@ -1,12 +1,12 @@
 import { NgModule, APP_INITIALIZER }     from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { AuthenticationService, OARAuthenticationService } from './auth.service';
-import { ConfigModule } from '../config/config.module';
+import { AuthenticationService, OARAuthenticationService, MockAuthenticationService } from './auth.service';
+import { ConfigModule, ConfigurationService } from '../config/config.module';
 import { Credentials } from './auth';
 
 export function createAuthenticationService(httpcli: HttpClient, cfgSvc: ConfigurationService,
-                                            creds: Credentials = null)
+                                            creds: Credentials|null = null)
 {
     if (creds == null)
         return new OARAuthenticationService(httpcli, cfgSvc);
@@ -32,7 +32,7 @@ export class AuthModule {
     /**
      * provide a singleton AuthenticationService that can accept static mock credentials
      */
-    public static withCredentials(Credentials creds = null) {
+    public static withCredentials(creds: Credentials|null = null) {
         return {
             ngModule: AuthModule,
             imports: [
