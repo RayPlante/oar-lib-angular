@@ -5,7 +5,7 @@ import { Observable, of, map, tap, switchMap, catchError, throwError, Subscriber
 import { AuthInfo, UserDetails, Credentials, MOCK_CREDENTIALS, messageToCredentials, deepCopy } from './auth';
 import { Configuration, ConfigurationService } from '../config/config.module';
 
-const anonymousCreds: Credentials = {
+export const anonymousCreds: Credentials = {
     userId: "anon",
     userAttributes: { userName: "Anonymous", userLastName: "Public" },
     token: null

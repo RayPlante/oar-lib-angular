@@ -32,7 +32,7 @@ export class AuthModule {
     /**
      * provide a singleton AuthenticationService that can accept static mock credentials
      */
-    public static withCredentials(creds: Credentials|null = null) {
+    public static withCredentials(creds: Credentials|null = null): ModuleWithProviders<NerdmModule> {
         return {
             ngModule: AuthModule,
             imports: [
