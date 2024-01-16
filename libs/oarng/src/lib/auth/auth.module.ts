@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER }     from '@angular/core';
+import { ModuleWithProviders, NgModule, APP_INITIALIZER }     from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { AuthenticationService, OARAuthenticationService, MockAuthenticationService } from './auth.service';
@@ -32,12 +32,9 @@ export class AuthModule {
     /**
      * provide a singleton AuthenticationService that can accept static mock credentials
      */
-    public static withCredentials(creds: Credentials|null = null): ModuleWithProviders<NerdmModule> {
+    public static withCredentials(creds: Credentials|null = null): ModuleWithProviders<AuthModule> {
         return {
             ngModule: AuthModule,
-            imports: [
-                CommonModule, ConfigModule
-            ],
             providers: [
                 { provide: AuthenticationService, useFactory: createAuthenticationService,
                   deps: [ HttpClient, ConfigurationService, creds ] },
